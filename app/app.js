@@ -1,6 +1,6 @@
 $(function () {
     //Generic list of streamers to start
-    var streamerNameArray = ["ESL_SC2", "Valkia", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "jessicamak", "rzsavilla", "pwnatrator", "jackfrags", "twoangrygamers", "simuleios"]
+    var streamerNameArray = ["Monstercat", "ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "jessicamak", "rzsavilla", "pwnatrator", "jackfrags", "twoangrygamers", "simuleios"]
     var streamerIdArray = [];
     var myHeaders = new Headers({
         'Client-ID': config.API_KEY,
@@ -45,21 +45,19 @@ $(function () {
         }
     })
 
-    $("#adder").submit(function (event) {
+    //adding a streamer using the search box
+    $("#adder").click(event => {
         event.preventDefault();
         var inputVal = $("input").val();
-        //retriever streamer data
-        //getData($("input").val());
+
         getStreamerIDs([inputVal.toString()], function (streamer) {
-            console.log("from in the adder get streamer id: " + streamer);
             var streamerID = streamer.users[0]._id;
-            console.log("streamerID : " + streamerID);
             streamerIdArray.unshift(streamerID);
             getData(streamerID);
         });
         //clear input box
         $("input").val("");
-    })
+    });
 
     //HELPER FUNCTIONS
 
